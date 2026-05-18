@@ -28,7 +28,7 @@ export class RecipeFormComponent {
     nome: ['', [Validators.required, Validators.minLength(3)]],
     categoria: ['', [Validators.required]],
     tempoPreparo: [1, [Validators.required, Validators.min(1)]],
-    porcoes: [1, [Validators.required]],
+    porcoes: [1, [Validators.required, Validators.min(1)]],
     ingredientes: ['', [Validators.required, this.ingredientesValidator]],
     modoPreparo: ['', [Validators.required, Validators.minLength(10)]]
   });
