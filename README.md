@@ -25,7 +25,7 @@ Acesse: http://localhost:8080
 ### Frontend
 ```powershell
 cd frontend
-npm.cmd install --no-package-lock
+npm.cmd install
 npm.cmd start
 ```
 
