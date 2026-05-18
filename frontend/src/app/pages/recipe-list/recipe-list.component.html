@@ -1,0 +1,45 @@
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Catalogo</p>
+    <h1>Receitas</h1>
+  </div>
+
+  <a class="primary-action" routerLink="/receitas/nova">Nova receita</a>
+</section>
+
+<section class="toolbar">
+  <label for="search">Buscar por nome</label>
+  <input
+    id="search"
+    name="search"
+    type="search"
+    [(ngModel)]="searchTerm"
+    placeholder="Ex.: Brigadeiro"
+    autocomplete="off"
+  />
+</section>
+
+<p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+<p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+<p class="loading" *ngIf="loading">Carregando receitas...</p>
+
+<p class="empty" *ngIf="!loading && !searchTerm && recipes.length === 0">
+  Nenhuma receita cadastrada
+</p>
+
+<p class="empty" *ngIf="!loading && searchTerm && filteredRecipes.length === 0">
+  Nenhuma receita encontrada
+</p>
+
+<section class="recipe-grid" *ngIf="!loading && filteredRecipes.length > 0">
+  <a
+    class="recipe-card"
+    *ngFor="let recipe of filteredRecipes; trackBy: trackById"
+    [routerLink]="['/receitas', recipe.id]"
+  >
+    <span class="category">{{ recipe.categoria }}</span>
+    <h2>{{ recipe.nome }}</h2>
+    <p>{{ recipe.tempoPreparo }} min</p>
+    <span class="details">Ver detalhes</span>
+  </a>
+</section>
