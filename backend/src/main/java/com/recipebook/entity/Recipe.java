@@ -14,6 +14,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,24 +34,34 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Nome e obrigatorio")
+    @Size(min = 3, message = "Nome deve ter no minimo 3 caracteres")
     @Column(nullable = false, unique = true)
     private String nome;
 
+    @NotNull(message = "Categoria e obrigatoria")
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Categoria categoria;
 
+    @NotNull(message = "Tempo de preparo e obrigatorio")
+    @Min(value = 1, message = "Tempo de preparo deve ser no minimo 1 minuto")
     @Column(nullable = false)
     private Integer tempoPreparo;
 
+    @NotNull(message = "Porcoes e obrigatorio")
+    @Min(value = 1, message = "Porcoes deve ser no minimo 1")
     @Column(nullable = false)
     private Integer porcoes;
 
+    @NotEmpty(message = "Informe pelo menos 1 ingrediente")
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "recipe_ingredients", joinColumns = @JoinColumn(name = "recipe_id"))
     @Column(name = "ingrediente", nullable = false)
-    private List<String> ingredientes = new ArrayList<>();
+    private List<@NotBlank(message = "Ingrediente nao pode ficar vazio") String> ingredientes = new ArrayList<>();
 
+    @NotBlank(message = "Modo de preparo e obrigatorio")
+    @Size(min = 10, message = "Modo de preparo deve ter no minimo 10 caracteres")
     @Column(nullable = false, columnDefinition = "TEXT")
     private String modoPreparo;
 
