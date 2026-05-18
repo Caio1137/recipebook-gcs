@@ -41,8 +41,13 @@
 
     <div class="field">
       <label for="porcoes">Porcoes</label>
-      <input id="porcoes" type="number" formControlName="porcoes" />
-      <p class="field-error" *ngIf="showError('porcoes')">Porcoes e obrigatorio</p>
+      <input id="porcoes" type="number" min="1" formControlName="porcoes" />
+      <p class="field-error" *ngIf="showError('porcoes') && control('porcoes').hasError('required')">
+        Porcoes e obrigatorio
+      </p>
+      <p class="field-error" *ngIf="showError('porcoes') && control('porcoes').hasError('min')">
+        Minimo 1 porcao
+      </p>
     </div>
   </div>
 
