@@ -1,0 +1,76 @@
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Cadastro</p>
+    <h1>Nova receita</h1>
+  </div>
+  <a class="secondary-action" routerLink="/receitas">Voltar</a>
+</section>
+
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <div class="field">
+    <label for="nome">Nome</label>
+    <input id="nome" type="text" formControlName="nome" />
+    <p class="field-error" *ngIf="showError('nome') && control('nome').hasError('required')">
+      Nome e obrigatorio
+    </p>
+    <p class="field-error" *ngIf="showError('nome') && control('nome').hasError('minlength')">
+      Minimo 3 caracteres
+    </p>
+  </div>
+
+  <div class="field">
+    <label for="categoria">Categoria</label>
+    <select id="categoria" formControlName="categoria">
+      <option value="">Selecione</option>
+      <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
+    </select>
+    <p class="field-error" *ngIf="showError('categoria')">Categoria e obrigatoria</p>
+  </div>
+
+  <div class="split">
+    <div class="field">
+      <label for="tempoPreparo">Tempo de preparo</label>
+      <input id="tempoPreparo" type="number" min="1" formControlName="tempoPreparo" />
+      <p class="field-error" *ngIf="showError('tempoPreparo') && control('tempoPreparo').hasError('required')">
+        Tempo e obrigatorio
+      </p>
+      <p class="field-error" *ngIf="showError('tempoPreparo') && control('tempoPreparo').hasError('min')">
+        Minimo 1 minuto
+      </p>
+    </div>
+
+    <div class="field">
+      <label for="porcoes">Porcoes</label>
+      <input id="porcoes" type="number" formControlName="porcoes" />
+      <p class="field-error" *ngIf="showError('porcoes')">Porcoes e obrigatorio</p>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="ingredientes">Ingredientes</label>
+    <textarea id="ingredientes" rows="6" formControlName="ingredientes"></textarea>
+    <p class="field-error" *ngIf="showError('ingredientes')">
+      Informe pelo menos 1 ingrediente
+    </p>
+  </div>
+
+  <div class="field">
+    <label for="modoPreparo">Modo de preparo</label>
+    <textarea id="modoPreparo" rows="7" formControlName="modoPreparo"></textarea>
+    <p class="field-error" *ngIf="showError('modoPreparo') && control('modoPreparo').hasError('required')">
+      Modo de preparo e obrigatorio
+    </p>
+    <p class="field-error" *ngIf="showError('modoPreparo') && control('modoPreparo').hasError('minlength')">
+      Minimo 10 caracteres
+    </p>
+  </div>
+
+  <p class="server-error" *ngIf="serverError">{{ serverError }}</p>
+
+  <div class="actions">
+    <a class="secondary-action" routerLink="/receitas">Cancelar</a>
+    <button type="submit" [disabled]="form.invalid || saving">
+      {{ saving ? 'Salvando...' : 'Salvar' }}
+    </button>
+  </div>
+</form>
