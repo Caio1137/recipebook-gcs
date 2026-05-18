@@ -19,6 +19,10 @@ export class RecipeService {
     return this.http.get<Recipe>(`${this.apiUrl}/${id}`);
   }
 
+  criar(recipe: Recipe): Observable<Recipe> {
+    return this.http.post<Recipe>(this.apiUrl, recipe);
+  }
+
   excluir(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
