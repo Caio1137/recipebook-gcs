@@ -1,28 +1,41 @@
 # RecipeBook
-Sistema de gestao de receitas culinarias - Projeto SENAI.
+Projeto de gerenciamento de receitas culinarias desenvolvido para a atividade de Construcao de Software e GCS.
+
+O sistema permite listar, buscar, cadastrar, visualizar e excluir receitas. O backend fornece a API REST e o frontend consome essa API em uma interface web.
 
 ## Tecnologias
-- Backend: Spring Boot 3.x + Java 17 + H2
-- Frontend: Angular 17+ Standalone Components
+- Java 17
+- Spring Boot
+- H2 Database
+- Angular 17
+- GitHub Actions
 
 ## Como executar
 
 ### Backend
-Com Maven instalado:
+Na pasta do projeto, entre no backend:
+
 ```powershell
 cd backend
+```
+
+Se o Maven estiver instalado na maquina:
+
+```powershell
 mvn spring-boot:run
 ```
 
-Sem Maven instalado, use o Maven Wrapper:
+Ou usando o Maven Wrapper:
+
 ```powershell
-cd backend
 .\mvnw.cmd spring-boot:run
 ```
 
 Acesse: http://localhost:8080
 
 ### Frontend
+Em outro terminal, entre na pasta do frontend:
+
 ```powershell
 cd frontend
 npm.cmd install --no-package-lock
@@ -32,5 +45,5 @@ npm.cmd start
 Acesse: http://localhost:4200
 
 ## Dupla
-- Nome Completo 1
-- Nome Completo 2
+- Caio Caetano Marques
+- Pedro Lucas Borges Barbosa
