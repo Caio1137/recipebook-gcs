@@ -4,6 +4,12 @@ Formato: https://keepachangelog.com
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-05-18
+
+### Fixed
+- Corrigida validacao do campo Porcoes: valor 0 agora e rejeitado (#3)
+- Botao Salvar permanece desabilitado quando porcoes <= 0
+
 ## [1.0.0] - 2026-05-18
 
 ### Added
