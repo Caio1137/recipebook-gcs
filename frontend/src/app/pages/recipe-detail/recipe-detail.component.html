@@ -1,0 +1,46 @@
+<p class="loading" *ngIf="loading">Carregando receita...</p>
+<p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+<ng-container *ngIf="recipe">
+  <section class="page-header">
+    <div>
+      <p class="eyebrow">{{ recipe.categoria }}</p>
+      <h1>{{ recipe.nome }}</h1>
+    </div>
+    <a class="secondary-action" routerLink="/receitas">Voltar</a>
+  </section>
+
+  <section class="summary">
+    <div>
+      <span>Tempo</span>
+      <strong>{{ recipe.tempoPreparo }} min</strong>
+    </div>
+    <div>
+      <span>Porcoes</span>
+      <strong>{{ recipe.porcoes }}</strong>
+    </div>
+    <div>
+      <span>Cadastro</span>
+      <strong>{{ recipe.dataCadastro | date: 'dd/MM/yyyy HH:mm' }}</strong>
+    </div>
+  </section>
+
+  <section class="content-grid">
+    <article>
+      <h2>Ingredientes</h2>
+      <ul>
+        <li *ngFor="let ingrediente of recipe.ingredientes">{{ ingrediente }}</li>
+      </ul>
+    </article>
+
+    <article>
+      <h2>Modo de preparo</h2>
+      <p class="preparation">{{ recipe.modoPreparo }}</p>
+    </article>
+  </section>
+
+  <div class="actions">
+    <a class="secondary-action" routerLink="/receitas">Voltar a listagem</a>
+    <button type="button" (click)="excluir()">Excluir receita</button>
+  </div>
+</ng-container>
