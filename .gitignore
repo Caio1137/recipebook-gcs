@@ -1,0 +1,16 @@
+# === JAVA / MAVEN ===
+target/
+*.class
+
+# === ANGULAR / NODE ===
+node_modules/
+dist/
+.angular/
+*.env
+
+# === EDITORS / OS ===
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
